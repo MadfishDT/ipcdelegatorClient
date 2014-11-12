@@ -1,0 +1,84 @@
+CC = gcc
+CXX = g++
+CFLAGS = -pipe -Wall -W -O2
+CXXFLAGS = -pipe -Wall -W -O2
+INCPATH = -I/./
+LINK =  g++
+LFLAGS  = 
+# FILE
+SOURCES =	ClArg.cpp\
+          ClArgList.cpp\
+          iObject_glue.cpp\
+          IPCRepresent.cpp\
+          MathodDelegator.cpp\
+          MethodCaller.cpp\
+          NamedPipe.cpp\
+          ObjectBinderFactory.cpp\
+          ObjectMathodMap.cpp\
+          ObjectMethodFilter.cpp\
+          PipeDelegatorCore.cpp\
+          ProcDataAdapter.cpp\
+          ProcPackage.cpp\
+          ProcParser.cpp\
+          RootComm.cpp\
+          RPCObjectBinder.cpp\
+          ThreadRepresent.cpp \
+ 	main.cpp
+
+OBJECTS =	ClArg.o\
+          ClArgList.o\
+          iObject_glue.o\
+          IPCRepresent.o\
+          MathodDelegator.o\
+          MethodCaller.o\
+          NamedPipe.o\
+          ObjectBinderFactory.o\
+          ObjectMathodMap.o\
+          ObjectMethodFilter.o\
+          PipeDelegatorCore.o\
+          ProcDataAdapter.o\
+          ProcPackage.o\
+          ProcParser.o\
+          RootComm.o\
+          RPCObjectBinder.o\
+          ThreadRepresent.o\
+          main.o
+          
+TARGET  = pipedel
+
+# Implict rules
+.SUFFIXES:.cpp .c
+
+.cpp.o: $(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+.c.o: $(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+# build rule
+
+all:	$(TARGET)
+$(TARGET):	$(OBJECTS) $(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS)
+
+opt:	$(SOURCES) $(TARGET) $(LINK) $(SOURCES) -o $(TARGET)
+
+
+clean:	rm -f $(OBJECTS) $(TARGET) \
+		rm -f core
+
+# complie
+ClArg.o: ClArg.cpp
+ClArgList.o: ClArgList.cpp
+iObject_glue.o: iObject_glue.cpp
+IPCRepresent.o: IPCRepresent.cpp
+MathodDelegator.o: MathodDelegator.cpp
+MethodCaller.o: MethodCaller.cpp
+NamedPipe.o: NamedPipe.cpp
+ObjectBinderFactory.o: ObjectBinderFactory.cpp
+ObjectMathodMap.o: ObjectMathodMap.cpp
+ObjectMethodFilter.o: ObjectMethodFilter.cpp
+PipeDelegatorCore.o: PipeDelegatorCore.cpp
+ProcDataAdapter.o: ProcDataAdapter.cpp
+ProcPackage.o: ProcPackage.cpp
+ProcParser.o: ProcParser.cpp
+RootComm.o: RootComm.cpp
+RPCObjectBinder.o: RPCObjectBinder.cpp
+ThreadRepresent.o: ThreadRepresent.cpp
+main.o: main.cpp
